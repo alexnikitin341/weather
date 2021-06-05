@@ -7,7 +7,6 @@ export async function getWeatherData(city: string) {
       `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${appid}&units=metric`
     );
 
-    console.log("data", data);
     return data;
   } catch (error) {
     console.log("error", error);

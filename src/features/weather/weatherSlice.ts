@@ -1,10 +1,10 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState, AppThunk } from "../../app/store";
-import { getWeatherData } from "./counterAPI";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../../app/store";
+import { getWeatherData } from "./weatherAPI";
 
 export interface weatherOneState {
   temp: number;
-  date: Date;
+  date: string;
   humidity: number;
 }
 export interface weathersState {
@@ -13,7 +13,10 @@ export interface weathersState {
 }
 
 const initialState: weathersState = {
-  weathers: [],
+  weathers: [
+    // { temp: 22, date: new Date().toISOString(), humidity: 44 },
+    // { temp: -1, date: new Date(2020).toISOString(), humidity: 78 },
+  ],
   status: "idle",
 };
 
@@ -29,9 +32,7 @@ export const weather = createSlice({
   name: "weather",
   initialState,
   reducers: {
-    addWeather: (state, action) => {
-      console.log("action", action);
-
+    addWeather: (state) => {
       state.weathers.push();
     },
   },
@@ -46,7 +47,7 @@ export const weather = createSlice({
         const newWeather = {
           temp: action.payload.main.temp,
           humidity: action.payload.main.humidity,
-          date: new Date(),
+          date: new Date().toISOString(),
         };
         state.weathers.push(newWeather);
       });
