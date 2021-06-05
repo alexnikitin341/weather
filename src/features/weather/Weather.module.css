@@ -12,16 +12,6 @@
   color: white;
 }
 
-@media screen and (max-width: 520px) {
-  .container {
-    font-size: 14px;
-  }
-
-  .header {
-    flex-direction: column;
-  }
-}
-
 .header {
   display: flex;
   align-items: center;
@@ -49,6 +39,11 @@
   outline: none;
   border: none;
   border-radius: 10px;
+  cursor: pointer;
+}
+
+.activeMonitoing {
+  background-color: rgb(19, 184, 19);
 }
 
 .tableContainer {
@@ -72,4 +67,14 @@
   border: 1px solid;
   width: 33%;
   cursor: pointer;
+}
+
+@media screen and (max-width: 520px) {
+  .container {
+    font-size: 14px;
+  }
+
+  .header {
+    flex-direction: column;
+  }
 }

@@ -1,5 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
-
+import { useCallback, useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { getWeather, selectWeather, weatherOneState } from "./weatherSlice";
 import styles from "./Weather.module.css";
@@ -21,11 +20,11 @@ export function Weather() {
   const [sortingData, setSortingData] = useState<weatherOneState[]>(
     weather.weathers
   );
-
   const [isMonitoring, setIsMonitoring] = useState<boolean>(false);
   const [intervalId, setIntervalId] = useState<any>();
 
-  const isCold: boolean = weather.weathers?.[0]?.temp < 0;
+  const isCold: boolean =
+    weather.weathers?.[weather.weathers.length - 1]?.temp < 0;
 
   const changeSortParametr = (value: "date" | "temp" | "humidity") => {
     if (value === sortParametr.value) {
@@ -63,6 +62,7 @@ export function Weather() {
 
   const monitoring = () => {
     if (isMonitoring) {
+      dispatch(getWeather(city));
       const newInterval = setInterval(() => dispatch(getWeather(city)), 30000);
       setIntervalId(newInterval);
     } else {
@@ -83,10 +83,12 @@ export function Weather() {
         </div>
 
         <button
-          className={styles.monitoringButton}
+          className={`${styles.monitoringButton} ${
+            isMonitoring && styles.activeMonitoing
+          }`}
           onClick={() => setIsMonitoring((prev) => !prev)}
         >
-          isMonitoring
+          {isMonitoring ? "Закончить мониторинг" : "Начать мониторинг"}
         </button>
       </div>
 

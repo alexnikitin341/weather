@@ -13,10 +13,7 @@ export interface weathersState {
 }
 
 const initialState: weathersState = {
-  weathers: [
-    // { temp: 22, date: new Date().toISOString(), humidity: 44 },
-    // { temp: -1, date: new Date(2020).toISOString(), humidity: 78 },
-  ],
+  weathers: [],
   status: "idle",
 };
 
